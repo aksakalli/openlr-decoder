@@ -1,7 +1,7 @@
 # OpenLR Decoder
 
   [![Docker Pulls](https://img.shields.io/docker/pulls/aksakalli/openlr-decoder)](https://hub.docker.com/r/aksakalli/openlr-decoder)
-  [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/aksakalli/openlr-decoder)](https://hub.docker.com/r/aksakalli/openlr-decoder)
+  [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/aksakalli/openlr-decoder)](https://hub.docker.com/r/aksakalli/openlr-decoder/builds)
 
 A web API to decode base 64 string into OpenLR objects
 using the [the standard implementation](https://github.com/tomtom-international/openlr).
