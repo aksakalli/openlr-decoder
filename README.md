@@ -1,5 +1,6 @@
 # OpenLR Decoder
 
+  [![Build Status](https://travis-ci.org/aksakalli/openlr-decoder.svg)](https://travis-ci.org/aksakalli/openlr-decoder)
   [![Docker Pulls](https://img.shields.io/docker/pulls/aksakalli/openlr-decoder)](https://hub.docker.com/r/aksakalli/openlr-decoder)
   [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/aksakalli/openlr-decoder)](https://hub.docker.com/r/aksakalli/openlr-decoder/builds)
 
