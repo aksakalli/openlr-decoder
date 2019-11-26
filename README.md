@@ -31,9 +31,9 @@ That would return a decoded Reference point object.
             "fow": "MULTIPLE_CARRIAGEWAY",
             "sequenceNumber": 1,
             "lfrc": "FRC_3",
+            "lastLRP": false,
             "longitudeDeg": 6.126819848985067,
-            "latitudeDeg": 49.608517884971576,
-            "lastLRP": false
+            "latitudeDeg": 49.608517884971576
         },
         {
             "bearing": 230.625,
@@ -42,9 +42,9 @@ That would return a decoded Reference point object.
             "fow": "SINGLE_CARRIAGEWAY",
             "sequenceNumber": 2,
             "lfrc": "FRC_5",
+            "lastLRP": false,
             "longitudeDeg": 6.128369849029585,
-            "latitudeDeg": 49.603987884936856,
-            "lastLRP": false
+            "latitudeDeg": 49.603987884936856
         },
         {
             "bearing": 196.875,
@@ -53,14 +53,12 @@ That would return a decoded Reference point object.
             "fow": "SLIPROAD",
             "sequenceNumber": 3,
             "lfrc": "FRC_7",
+            "lastLRP": true,
             "longitudeDeg": 6.128159849031252,
-            "latitudeDeg": 49.58552788500302,
-            "lastLRP": true
+            "latitudeDeg": 49.58552788500302
         }
     ],
-    "valid": true,
     "locationType": "LINE_LOCATION",
-    "numberOfRows": -1,
     "geoCoordinates": null,
     "sideOfRoad": null,
     "orientation": null,
@@ -69,7 +67,9 @@ That would return a decoded Reference point object.
     "upperRightPoint": null,
     "centerPoint": null,
     "radius": -1,
-    "numberOfColumns": -1
+    "numberOfColumns": -1,
+    "numberOfRows": -1,
+    "valid": true
 }
 ```
 

@@ -16,13 +16,8 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<openlr.version>1.4.3</openlr.version>
 	</properties>
-	<repositories>
-		<repository>
-			<id>jitpack.io</id>
-			<url>https://jitpack.io</url>
-		</repository>
-	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -34,9 +29,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.github.tomtom-international</groupId>
-			<artifactId>openlr</artifactId>
-			<version>26924cd761</version>
+			<groupId>org.openlr</groupId>
+			<artifactId>binary</artifactId>
+			<version>${openlr.version}</version>
 		</dependency>
 	</dependencies>
 
