@@ -4,73 +4,167 @@
   [![Docker Pulls](https://img.shields.io/docker/pulls/aksakalli/openlr-decoder)](https://hub.docker.com/r/aksakalli/openlr-decoder)
   [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/aksakalli/openlr-decoder)](https://hub.docker.com/r/aksakalli/openlr-decoder/builds)
 
-A web API to decode base 64 string into OpenLR objects
+A web API to decode base 64 string into OpenLR™ objects
 using the [the standard implementation](https://github.com/tomtom-international/openlr).
+
+> **OpenLR** is a royalty-free open standard for "procedures and formats for the encoding, transmission,
+> and decoding of local data irrespective of the map" developed by [TomTom](https://www.tomtom.com/).
+  
+(See the [white paper](https://www.openlr-association.com/fileadmin/user_upload/openlr-whitepaper_v1.5.pdf) for details)
+
+## How to run
+
+You need to clone the project and run the spring boot app
+
+```bash
+git clone https://github.com/aksakalli/openlr-decoder.git && cd openlr-decoder
+./mvnw spring-boot:run
+```
+
+Or run the docker image which is built automatically from this repo via Docker Cloud:
+
+```bash
+docker run -d --name openlr-decoder -p 8080:8080 aksakalli/openlr-decoder
+```
 
 ## Usage
 
+### JSON object
+
 ```bash
-# run the decoder web API
-$ docker run -d --name openlr-decoder -p 8080:8080 aksakalli/openlr-decoder
-# decode base 64 text with get endpoint 
-$ curl http://localhost:8080/?data=CwRbWyNG9RpsCQCb/jsbtAT/6/+jK1lE
+curl http://localhost:8080/?data=CwRbWyNG9RpsCQCb/jsbtAT/6/+jK1lE
 ```
-That would return a decoded Reference point object.
-(See the [white paper](https://www.openlr-association.com/fileadmin/user_upload/openlr-whitepaper_v1.5.pdf) for details)
+
+Output:
 
 ```json
 {
-    "id": "decoder",
-    "returnCode": null,
-    "offsets": {},
-    "locationReferencePoints": [
+  "locationID": "",
+  "binaryLocationReferences": null,
+  "additionalInformation": null,
+  "xmllocationReference": {
+    "lineLocationReference": {
+      "locationReferencePoint": [
         {
-            "bearing": 140.625,
-            "distanceToNext": 557,
+          "coordinates": {
+            "longitude": 6.126819848985067,
+            "latitude": 49.608517884971576
+          },
+          "lineAttributes": {
             "frc": "FRC_3",
             "fow": "MULTIPLE_CARRIAGEWAY",
-            "sequenceNumber": 1,
-            "lfrc": "FRC_3",
-            "lastLRP": false,
-            "longitudeDeg": 6.126819848985067,
-            "latitudeDeg": 49.608517884971576
+            "bear": 141
+          },
+          "pathAttributes": {
+            "lfrcnp": "FRC_3",
+            "dnp": 557
+          }
         },
         {
-            "bearing": 230.625,
-            "distanceToNext": 264,
+          "coordinates": {
+            "longitude": 6.128369849029585,
+            "latitude": 49.603987884936856
+          },
+          "lineAttributes": {
             "frc": "FRC_3",
             "fow": "SINGLE_CARRIAGEWAY",
-            "sequenceNumber": 2,
-            "lfrc": "FRC_5",
-            "lastLRP": false,
-            "longitudeDeg": 6.128369849029585,
-            "latitudeDeg": 49.603987884936856
-        },
-        {
-            "bearing": 196.875,
-            "distanceToNext": 0,
-            "frc": "FRC_2",
-            "fow": "SLIPROAD",
-            "sequenceNumber": 3,
-            "lfrc": "FRC_7",
-            "lastLRP": true,
-            "longitudeDeg": 6.128159849031252,
-            "latitudeDeg": 49.58552788500302
+            "bear": 231
+          },
+          "pathAttributes": {
+            "lfrcnp": "FRC_5",
+            "dnp": 264
+          }
         }
-    ],
-    "locationType": "LINE_LOCATION",
-    "geoCoordinates": null,
-    "sideOfRoad": null,
-    "orientation": null,
-    "cornerPoints": null,
-    "lowerLeftPoint": null,
-    "upperRightPoint": null,
-    "centerPoint": null,
-    "radius": -1,
-    "numberOfColumns": -1,
-    "numberOfRows": -1,
-    "valid": true
+      ],
+      "lastLocationReferencePoint": {
+        "coordinates": {
+          "longitude": 6.128159849031252,
+          "latitude": 49.58552788500302
+        },
+        "lineAttributes": {
+          "frc": "FRC_2",
+          "fow": "SLIPROAD",
+          "bear": 197
+        }
+      },
+      "offsets": {
+        "posOff": 25,
+        "negOff": 0
+      }
+    },
+    "pointLocationReference": null,
+    "areaLocationReference": null
+  }
 }
+```
+
+### OpenLR™ XML Representation
+
+```bash
+$ curl -H "Accept: application/xml" http://localhost:8080/?data=CwRbWyNG9RpsCQCb/jsbtAT/6/+jK1lE
+```
+
+Output:
+
+```xml
+<OpenLR>
+  <locationID />
+  <binaryLocationReferences />
+  <additionalInformation />
+  <xmllocationReference>
+    <lineLocationReference>
+      <locationReferencePoint>
+        <locationReferencePoint>
+          <coordinates>
+            <longitude>6.126819848985067</longitude>
+            <latitude>49.608517884971576</latitude>
+          </coordinates>
+          <lineAttributes>
+            <frc>FRC_3</frc>
+            <fow>MULTIPLE_CARRIAGEWAY</fow>
+            <bear>141</bear>
+          </lineAttributes>
+          <pathAttributes>
+            <lfrcnp>FRC_3</lfrcnp>
+            <dnp>557</dnp>
+          </pathAttributes>
+        </locationReferencePoint>
+        <locationReferencePoint>
+          <coordinates>
+            <longitude>6.128369849029585</longitude>
+            <latitude>49.603987884936856</latitude>
+          </coordinates>
+          <lineAttributes>
+            <frc>FRC_3</frc>
+            <fow>SINGLE_CARRIAGEWAY</fow>
+            <bear>231</bear>
+          </lineAttributes>
+          <pathAttributes>
+            <lfrcnp>FRC_5</lfrcnp>
+            <dnp>264</dnp>
+          </pathAttributes>
+        </locationReferencePoint>
+      </locationReferencePoint>
+      <lastLocationReferencePoint>
+        <coordinates>
+          <longitude>6.128159849031252</longitude>
+          <latitude>49.58552788500302</latitude>
+        </coordinates>
+        <lineAttributes>
+          <frc>FRC_2</frc>
+          <fow>SLIPROAD</fow>
+          <bear>197</bear>
+        </lineAttributes>
+      </lastLocationReferencePoint>
+      <offsets>
+        <posOff>25</posOff>
+        <negOff>0</negOff>
+      </offsets>
+    </lineLocationReference>
+    <pointLocationReference />
+    <areaLocationReference />
+  </xmllocationReference>
+</OpenLR>
 ```
 
 ## License
